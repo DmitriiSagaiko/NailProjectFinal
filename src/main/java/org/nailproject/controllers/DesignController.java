@@ -2,6 +2,7 @@ package org.nailproject.controllers;
 
 
 import lombok.AllArgsConstructor;
+import org.nailproject.annotation.CarlosPayAttention;
 import org.nailproject.entity.nail.NailDesign;
 import org.nailproject.requestDTO.NailDesignClientRequestDTO;
 import org.nailproject.services.designService.*;
@@ -47,6 +48,11 @@ public class DesignController {
         return removeDesignService.removeDesign(request);
     }
 
+    @CarlosPayAttention(whatToDo = "Pay attention on to this 2 methods we need to discuss it." +
+            "What type of Method, return value etc." +
+            "Think as well about UI and create first BAD UI. would like to test it via interface. i still dont " +
+            "understand how to connect backend to frontend  ")
+    public void anyMethod(){}
     //TODO printDesign
     //TODO shareDesign
 
