@@ -21,6 +21,7 @@ public class AddClientService {
         //if valid
         Optional<Client> clientOptional = clientRepository.addClient(client);
         return clientOptional.isPresent();
+//        return true;
     }
 
 }
