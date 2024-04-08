@@ -12,7 +12,7 @@ public class Client {
 
     private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     private int age;
 

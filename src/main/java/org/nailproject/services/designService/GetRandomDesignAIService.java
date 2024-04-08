@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Service
 public class GetRandomDesignAIService {
-    public Optional<NailDesign> getRandomDesignAI(List<NailTag> list) {
+    public Optional<NailDesign> getRandomDesignAI(String tags) {
         //TODO make a request for AI
         //optional because we can not grant the 100% result
         return Optional.empty();
