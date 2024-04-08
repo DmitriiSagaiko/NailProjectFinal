@@ -2,11 +2,13 @@ package org.nailproject.repository;
 
 import org.nailproject.entity.client.Client;
 import org.nailproject.entity.nail.NailDesign;
+import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class NailDesignRepository {
     HashMap<String, List<NailDesign>> nailDesignsRepository = new HashMap<>();
 
