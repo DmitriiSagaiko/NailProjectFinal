@@ -1,5 +1,6 @@
 package org.nailproject.services.designService;
 
+import org.nailproject.annotation.CarlosPayAttention;
 import org.nailproject.entity.nail.NailDesign;
 import org.nailproject.repository.NailDesignRepository;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class ShareDesignService {
 
 
     //TODO for V2
+    @CarlosPayAttention(whatToDo = "just think about it and make your idea for future")
     public void shareDesign(NailDesign design) {
         nailDesignRepository.shareDesign(design);
     }
