@@ -1,5 +1,6 @@
 package org.nailproject.entity.client;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 
+@Entity
 public class Client {
 
     private String firstName;
@@ -19,4 +21,7 @@ public class Client {
     private String email;
 
     private String phoneNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 }

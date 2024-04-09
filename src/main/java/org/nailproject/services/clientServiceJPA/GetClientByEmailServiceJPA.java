@@ -4,19 +4,18 @@ import org.nailproject.entity.client.Client;
 import org.nailproject.repository.ClientRepositoryJPA;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UpdateClientService {
+public class GetClientByEmailServiceJPA {
     private final ClientRepositoryJPA clientRepositoryJPA;
 
-    public UpdateClientService(ClientRepositoryJPA clientRepositoryJPA) {
+
+    public GetClientByEmailServiceJPA(ClientRepositoryJPA clientRepositoryJPA) {
         this.clientRepositoryJPA = clientRepositoryJPA;
     }
 
-    public Boolean updateClient(Client client) {
-        Client addClient = clientRepositoryJPA.save(client);
-
-        return addClient.equals(clientRepositoryJPA.getClientByEmail(client.getEmail()).get());
-
-
+    public Optional<Client> getClientByEmail(String email) {
+        return clientRepositoryJPA.getClientByEmail(email);
     }
 }

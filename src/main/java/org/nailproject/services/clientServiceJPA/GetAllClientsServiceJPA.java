@@ -8,11 +8,11 @@ import java.util.List;
 
 
 @Service
-public class GetAllClientsService {
+public class GetAllClientsServiceJPA {
 
     private final ClientRepositoryJPA clientRepositoryJPA;
 
-    public GetAllClientsService(ClientRepositoryJPA clientRepositoryJPA) {
+    public GetAllClientsServiceJPA(ClientRepositoryJPA clientRepositoryJPA) {
         this.clientRepositoryJPA = clientRepositoryJPA;
     }
 
