@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+
+    <changeSet id="create.table.client" author="Dmitrii Sagaiko">
+        <createTable tableName="client">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="age" type="int" />
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)"/>
+            <column name="last_name" type="varchar(255)"/>
+            <column name="phone_number" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="insert.default.clients" author="Dmitrii Sagaiko">
+        <insert tableName="client">
+            <column name="age" value="25"> </column>
+            <column name="email" value="testClient1@gmail.com"> </column>
+            <column name="first_name" value="John"> </column>
+            <column name="last_name" value="Doe"> </column>
+            <column name="phone_number" value="+491520001241"> </column>
+        </insert>
+        <insert tableName="client">
+            <column name="age" value="30"> </column>
+            <column name="email" value="testClient2@gmail.com"> </column>
+            <column name="first_name" value="Mario"> </column>
+            <column name="last_name" value="Carlos"> </column>
+            <column name="phone_number" value="+79252402179"> </column>
+        </insert>
+        <insert tableName="client">
+            <column name="age" value="35"> </column>
+            <column name="email" value="testClient3@gmail.com"> </column>
+            <column name="first_name" value="Irina"> </column>
+            <column name="last_name" value="Volkova"> </column>
+            <column name="phone_number" value="+4911125432"> </column>
+        </insert>
+        <insert tableName="client">
+            <column name="age" value="40"> </column>
+            <column name="email" value="testClient4@gmail.com"> </column>
+            <column name="first_name" value="Vladimir"> </column>
+            <column name="last_name" value="Golubkov"> </column>
+            <column name="phone_number" value="+4925675410"> </column>
+        </insert>
+        <insert tableName="client">
+            <column name="age" value="45"> </column>
+            <column name="email" value="testClient5@gmail.com"> </column>
+            <column name="first_name" value="Mariana"> </column>
+            <column name="last_name" value="Cherkez"> </column>
+            <column name="phone_number" value="+49152555412"> </column>
+        </insert>
+
+    </changeSet>
+
+
+
+
+</databaseChangeLog>
