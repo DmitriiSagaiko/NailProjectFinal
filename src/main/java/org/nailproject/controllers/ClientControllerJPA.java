@@ -6,8 +6,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.nailproject.dto.clients.ClientsRequestDTO;
+import org.nailproject.dto.clients.ClientsResponseDTO;
 import org.nailproject.entity.client.Client;
 import org.nailproject.services.clientServiceJPA.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,15 +30,14 @@ public class ClientControllerJPA {
     private final UpdateClientServiceJPA updateClientServiceJPA;
 
 
-    @GetMapping( "/{email}")
+    @GetMapping("/{email}")
     @Operation(summary = "get a one user by email")
     @ApiResponse(responseCode = "200", description = "Successfully got a client",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Optional.class))})
-    public Optional<Client> getClientByEmail(@PathVariable String email) {
-        return getClientByEmailServiceJPA.getClientByEmail(email);
+                    schema = @Schema(implementation = ClientsResponseDTO.class))})
+    public ResponseEntity<ClientsResponseDTO> getClientByEmail(@PathVariable String email) {
+        return new ResponseEntity<>(getClientByEmailServiceJPA.getClientByEmail(email), HttpStatus.OK);
     }
-
 
 
     @GetMapping
@@ -42,43 +45,39 @@ public class ClientControllerJPA {
     @ApiResponse(responseCode = "200", description = "Successfully got a list",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = List.class))})
-    public List<Client> getAllClients() {
-        return getAllClientsServiceJPA.getAllClients();
+    public ResponseEntity<List<ClientsResponseDTO>> getAllClients() {
+        return new ResponseEntity<>(getAllClientsServiceJPA.getAllClients(), HttpStatus.OK);
     }
-
-
 
 
     @Operation(summary = "add user to a DB")
     @ApiResponse(responseCode = "201", description = "user was added successfully",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Boolean.class))})
+                    schema = @Schema(implementation = ClientsResponseDTO.class))})
     @PostMapping("/addNewClient")
-    public Boolean addClient(@Valid @RequestBody Client client) {
-        return addClientServiceJPA.addClient(client);
+    public ResponseEntity<ClientsResponseDTO> addClient(@Valid @RequestBody ClientsRequestDTO request) {
+        return new ResponseEntity<>(addClientServiceJPA.addClient(request), HttpStatus.CREATED);
     }
-
 
 
     @Operation(summary = "update user id DB")
     @ApiResponse(responseCode = "200", description = "user was updated successfully",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Boolean.class))})
+                    schema = @Schema(implementation = ClientsResponseDTO.class))})
     @PutMapping("/update")
-    public Boolean updateClient(@Valid @RequestBody Client client) {
-        return updateClientServiceJPA.updateClient(client);
+    public ResponseEntity<ClientsResponseDTO> updateClient(@Valid @RequestBody ClientsRequestDTO request) {
+        return new ResponseEntity<>(updateClientServiceJPA.updateClient(request), HttpStatus.OK);
     }
-
 
 
     @Operation(summary = "delete user from DB")
     @ApiResponse(responseCode = "200", description = "user was deleted successfully",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = Boolean.class))})
+                    schema = @Schema(implementation = ClientsResponseDTO.class))})
     @DeleteMapping("/{email}")
     @Transactional
-    public Boolean deleteClient(@Valid @PathVariable String email) {
-        return removeClientByEmailJPA.removeClientByEmail(email);
+    public ResponseEntity<ClientsResponseDTO> deleteClient(@Valid @PathVariable String email) {
+        return new ResponseEntity<>(removeClientByEmailJPA.removeClientByEmail(email), HttpStatus.OK);
     }
 
 
