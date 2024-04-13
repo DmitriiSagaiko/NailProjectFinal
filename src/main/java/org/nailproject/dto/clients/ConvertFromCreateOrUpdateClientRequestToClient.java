@@ -2,9 +2,9 @@ package org.nailproject.dto.clients;
 
 import org.nailproject.entity.client.Client;
 
-public class ConvertFromClientsRequestDtoToClient {
+public class ConvertFromCreateOrUpdateClientRequestToClient {
 
-    public Client converToClient(ClientsRequestDTO request){
+    public Client converToClient(ClientRequestForUpdateOrCreateDTO request){
         Client result = new Client();
         if(request.getEmail() != null){
             result.setEmail(request.getEmail());
@@ -18,6 +18,10 @@ public class ConvertFromClientsRequestDtoToClient {
         if(request.getLastName() != null){
             result.setLastName(request.getLastName());
         }
+        if(request.getPhoneNumber() != null){
+            result.setPhoneNumber(request.getPhoneNumber());
+        }
+
 
         return result;
     }

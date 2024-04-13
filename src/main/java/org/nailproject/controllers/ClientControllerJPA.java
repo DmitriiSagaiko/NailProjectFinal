@@ -6,9 +6,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.nailproject.dto.clients.ClientRequestForUpdateOrCreateDTO;
 import org.nailproject.dto.clients.ClientsRequestDTO;
 import org.nailproject.dto.clients.ClientsResponseDTO;
-import org.nailproject.entity.client.Client;
 import org.nailproject.services.clientServiceJPA.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController()
 @AllArgsConstructor
@@ -55,7 +54,7 @@ public class ClientControllerJPA {
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = ClientsResponseDTO.class))})
     @PostMapping("/addNewClient")
-    public ResponseEntity<ClientsResponseDTO> addClient(@Valid @RequestBody ClientsRequestDTO request) {
+    public ResponseEntity<ClientsResponseDTO> addClient(@Valid @RequestBody ClientRequestForUpdateOrCreateDTO request) {
         return new ResponseEntity<>(addClientServiceJPA.addClient(request), HttpStatus.CREATED);
     }
 
@@ -65,7 +64,7 @@ public class ClientControllerJPA {
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = ClientsResponseDTO.class))})
     @PutMapping("/update")
-    public ResponseEntity<ClientsResponseDTO> updateClient(@Valid @RequestBody ClientsRequestDTO request) {
+    public ResponseEntity<ClientsResponseDTO> updateClient(@Valid @RequestBody ClientRequestForUpdateOrCreateDTO request) {
         return new ResponseEntity<>(updateClientServiceJPA.updateClient(request), HttpStatus.OK);
     }
 

@@ -1,10 +1,7 @@
 package org.nailproject.services.clientServiceJPA;
 
 import exceptions.NotFoundException;
-import org.nailproject.dto.clients.ClientsRequestDTO;
-import org.nailproject.dto.clients.ClientsResponseDTO;
-import org.nailproject.dto.clients.ConvertFromClientToResponseDTO;
-import org.nailproject.dto.clients.ConvertFromClientsRequestDtoToClient;
+import org.nailproject.dto.clients.*;
 import org.nailproject.entity.client.Client;
 import org.nailproject.repository.ClientRepositoryJPA;
 import org.springframework.stereotype.Service;
@@ -21,15 +18,22 @@ public class UpdateClientServiceJPA {
         this.clientRepositoryJPA = clientRepositoryJPA;
     }
 
-    public ClientsResponseDTO updateClient(ClientsRequestDTO request) {
-        Optional<Client> optionalClient = clientRepositoryJPA.getClientByEmail(request.getEmail());
+    public ClientsResponseDTO updateClient(ClientRequestForUpdateOrCreateDTO request) {
+        Optional<Client> optionalClient = clientRepositoryJPA.findById(request.getId().toString());
         if(optionalClient.isEmpty()){
-            throw new NotFoundException("Client not found");
+            throw new NotFoundException("Client with id " + request.getId()+ " not found");
         }
-        Client beforeUpdate = convertFromClientsRequestDtoToClient.converToClient(request);
-        Client afterUpdate = clientRepositoryJPA.save(beforeUpdate);
 
-        return convertFromClientToResponseDTO.convertToResponse(afterUpdate);
+        Client client = optionalClient.get();
+
+        client.setAge(request.getAge());
+        client.setEmail(request.getEmail());
+        client.setFirstName(request.getFirstName());
+        client.setLastName(request.getLastName());
+
+        clientRepositoryJPA.save(client);
+
+        return convertFromClientToResponseDTO.convertToResponse(client);
 
 
     }
