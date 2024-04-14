@@ -5,6 +5,9 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.nailproject.entity.nail.NailDesign;
+
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,4 +41,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<NailDesign> nailDesigns;
 }
