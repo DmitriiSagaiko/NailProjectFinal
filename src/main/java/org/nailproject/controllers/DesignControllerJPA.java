@@ -7,19 +7,16 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
 import org.nailproject.dto.design.DesignRequestDTO;
 import org.nailproject.dto.design.DesignResponseDTO;
-import org.nailproject.entity.nail.NailDesign;
-import org.nailproject.requestDTO.NailDesignClientRequestDTO;
 import org.nailproject.services.designServiceJPA.AddDesignServiceJPA;
 import org.nailproject.services.designServiceJPA.GetAllDesignServiceByClientIdJPA;
 
-import org.nailproject.services.designServiceJPA.GetOneDesignByNameServiceJPA;
+import org.nailproject.services.designServiceJPA.GetListOfDesignsByNameServiceJPA;
 import org.nailproject.services.designServiceJPA.RemoveDesignServiceJPA;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -27,7 +24,7 @@ import java.util.Optional;
 public class DesignControllerJPA {
     private final AddDesignServiceJPA addDesignServiceJPA;
     private final GetAllDesignServiceByClientIdJPA getAllDesignServiceByClientIdJPA;
-    private final GetOneDesignByNameServiceJPA getOneDesignByNameServiceJPA;
+    private final GetListOfDesignsByNameServiceJPA getListOfDesignsByNameServiceJPA;
     private final RemoveDesignServiceJPA removeDesignServiceJPA;
 
     @Operation(summary = "get users designs by user ID")
@@ -47,7 +44,7 @@ public class DesignControllerJPA {
                     schema = @Schema(implementation = List.class))})
     @GetMapping("/name")
     public ResponseEntity<List<DesignResponseDTO>> getListOfDesignsByName(@RequestParam("inputData") String name) {
-        return new ResponseEntity<>(getOneDesignByNameServiceJPA.getOneDesignByName(name), HttpStatus.OK);
+        return new ResponseEntity<>(getListOfDesignsByNameServiceJPA.getOneDesignByName(name), HttpStatus.OK);
     }
 
 
