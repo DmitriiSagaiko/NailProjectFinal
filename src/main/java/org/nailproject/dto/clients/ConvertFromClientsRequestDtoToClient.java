@@ -19,6 +19,7 @@ public class ConvertFromClientsRequestDtoToClient {
             result.setLastName(request.getLastName());
         }
 
+
         return result;
     }
 }

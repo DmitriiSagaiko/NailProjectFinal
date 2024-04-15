@@ -1,10 +1,7 @@
 package org.nailproject.entity.nail;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.nailproject.entity.client.Client;
 
@@ -14,26 +11,25 @@ import java.util.List;
 @Entity
 public class NailDesign {
 
-    @NotNull
+    @NotNull(message = "name can't be null")
     @NotEmpty(message = "Name is mandatory")
     private String name;
 
 
-    @Size(min = 1, max = 10, message = "stickers lie in range from 1 to 10")
-    private Integer amountOfStickers;
+    @Min(value = 1, message = "min amount of stickers has to be more then 1")
+    @Max(value = 10, message = "maximum amount of stickers has to less then 11")
+    private int amountOfStickers;
 
 
-    @NotEmpty
     private Boolean isPublic;
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @NotEmpty(message = "client has to be assigned")
+    @NotNull(message = "client can't be null")
     @ManyToOne
-    @JoinColumn(name = "client_nail_design")
+    @JoinColumn(name = "client_id", referencedColumnName = "id")
     private Client client;
 }

@@ -9,6 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface NailDesignRepositoryJPA extends JpaRepository<NailDesign, Integer> {
-    Optional<NailDesign> getNailDesignByName(String name);
+    List<NailDesign> getNailDesignSByName(String name);
     List<NailDesign> getNailDesignByClient_Id(Integer id);
 }
