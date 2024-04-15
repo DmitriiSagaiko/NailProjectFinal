@@ -15,6 +15,7 @@ import org.nailproject.requestDTO.NailDesignClientRequestDTO;
 import org.nailproject.services.clientServiceJPA.FindClientByIdServiceJPA;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -26,6 +27,7 @@ public class AddDesignServiceJPA {
     private final ConvertFromRequestToNailDesign convertFromRequestToNailDesign;
     private final FindClientByIdServiceJPA findClientByIdServiceJPA;
     private final ConvertFromNailDesignToResponse convertFromNailDesignToResponse;
+
 
     public DesignResponseDTO addNailDesign(DesignRequestDTO requestDTO) {
 

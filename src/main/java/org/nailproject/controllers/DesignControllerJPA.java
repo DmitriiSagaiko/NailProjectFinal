@@ -30,12 +30,12 @@ public class DesignControllerJPA {
     private final GetOneDesignByNameServiceJPA getOneDesignByNameServiceJPA;
     private final RemoveDesignServiceJPA removeDesignServiceJPA;
 
-    @Operation(summary = "get users design by ID")
+    @Operation(summary = "get users designs by user ID")
     @ApiResponse(responseCode = "200", description = "design has been got successfully",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = List.class))})
+                    schema = @Schema(implementation = DesignResponseDTO.class))})
     @GetMapping("/{clientId}")
-    public ResponseEntity<List<NailDesign>> getAllDesignsByClientId(@PathVariable Integer clientId) {
+    public ResponseEntity<List<DesignResponseDTO>> getAllDesignsByClientId(@PathVariable Integer clientId) {
         return new ResponseEntity<>(getAllDesignServiceByClientIdJPA.getAllDesignsById(clientId), HttpStatus.OK);
     }
 
@@ -44,9 +44,9 @@ public class DesignControllerJPA {
     @Operation(summary = "get design by name")
     @ApiResponse(responseCode = "200", description = "design has been got successfully",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = DesignResponseDTO.class))})
+                    schema = @Schema(implementation = List.class))})
     @GetMapping("/name")
-    public ResponseEntity<DesignResponseDTO> getOneDesignByName(@RequestParam("inputData") String name) {
+    public ResponseEntity<List<DesignResponseDTO>> getListOfDesignsByName(@RequestParam("inputData") String name) {
         return new ResponseEntity<>(getOneDesignByNameServiceJPA.getOneDesignByName(name), HttpStatus.OK);
     }
 
@@ -61,12 +61,12 @@ public class DesignControllerJPA {
     }
 
 
-    @Operation(summary = "delete design by ID")
+    @Operation(summary = "delete design by design ID")
     @ApiResponse(responseCode = "200", description = "design has been deleted successfully",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = DesignResponseDTO.class))})
     @DeleteMapping("/{designId}")
-    public ResponseEntity<DesignResponseDTO> deleteDesign(@PathVariable Integer designId) {
+    public ResponseEntity<DesignResponseDTO> deleteDesignById(@PathVariable Integer designId) {
         return new ResponseEntity<>(removeDesignServiceJPA.removeDesignById(designId), HttpStatus.OK);
     }
 }

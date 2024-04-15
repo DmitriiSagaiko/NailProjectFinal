@@ -15,9 +15,6 @@ public class ConvertFromRequestToNailDesign {
         if (requestDTO.getName() != null){
             nailDesign.setName(requestDTO.getName());
         }
-        if (requestDTO.getClientId()>0){
-            nailDesign.setId(requestDTO.getClientId());
-        }
         if (requestDTO.getAmountOfStickers()>0 && requestDTO.getAmountOfStickers()<11){
             nailDesign.setAmountOfStickers(requestDTO.getAmountOfStickers());
         }
