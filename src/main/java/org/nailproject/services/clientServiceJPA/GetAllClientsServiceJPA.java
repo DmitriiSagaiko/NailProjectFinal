@@ -2,7 +2,6 @@ package org.nailproject.services.clientServiceJPA;
 
 import org.nailproject.dto.clients.ClientsResponseDTO;
 import org.nailproject.dto.clients.ConvertFromClientToResponseDTO;
-import org.nailproject.entity.client.Client;
 import org.nailproject.repository.ClientRepositoryJPA;
 import org.springframework.stereotype.Service;
 

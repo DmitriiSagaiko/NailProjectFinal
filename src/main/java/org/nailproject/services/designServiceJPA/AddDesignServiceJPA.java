@@ -1,7 +1,6 @@
 package org.nailproject.services.designServiceJPA;
 
 import exceptions.NotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.nailproject.dto.design.ConvertFromNailDesignToResponse;
 import org.nailproject.dto.design.ConvertFromRequestToNailDesign;
@@ -9,13 +8,9 @@ import org.nailproject.dto.design.DesignRequestDTO;
 import org.nailproject.dto.design.DesignResponseDTO;
 import org.nailproject.entity.client.Client;
 import org.nailproject.entity.nail.NailDesign;
-import org.nailproject.repository.ClientRepositoryJPA;
 import org.nailproject.repository.NailDesignRepositoryJPA;
-import org.nailproject.requestDTO.NailDesignClientRequestDTO;
 import org.nailproject.services.clientServiceJPA.FindClientByIdServiceJPA;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

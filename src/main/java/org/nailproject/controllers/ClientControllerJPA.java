@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.nailproject.dto.clients.ClientRequestForUpdateOrCreateDTO;
-import org.nailproject.dto.clients.ClientsRequestDTO;
 import org.nailproject.dto.clients.ClientsResponseDTO;
 import org.nailproject.services.clientServiceJPA.*;
 import org.springframework.http.HttpStatus;
