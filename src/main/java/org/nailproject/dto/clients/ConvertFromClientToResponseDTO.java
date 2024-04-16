@@ -1,7 +1,9 @@
 package org.nailproject.dto.clients;
 
 import org.nailproject.entity.client.Client;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConvertFromClientToResponseDTO {
 
     public ClientsResponseDTO convertToResponse(Client client) {

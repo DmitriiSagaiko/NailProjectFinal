@@ -28,6 +28,7 @@ public class ClientControllerJPA {
     private final UpdateClientServiceJPA updateClientServiceJPA;
 
 
+
     @GetMapping("/{email}")
     @Operation(summary = "get a one user by email")
     @ApiResponse(responseCode = "200", description = "Successfully got a client",
@@ -58,7 +59,7 @@ public class ClientControllerJPA {
     }
 
 
-    @Operation(summary = "update user id DB")
+    @Operation(summary = "update users info by id in DB")
     @ApiResponse(responseCode = "200", description = "user was updated successfully",
             content = {@Content(mediaType = "application/json",
                     schema = @Schema(implementation = ClientsResponseDTO.class))})
@@ -77,6 +78,11 @@ public class ClientControllerJPA {
     public ResponseEntity<ClientsResponseDTO> deleteClient(@Valid @PathVariable String email) {
         return new ResponseEntity<>(removeClientByEmailJPA.removeClientByEmail(email), HttpStatus.OK);
     }
+
+
+
+
+
 
 
 }
