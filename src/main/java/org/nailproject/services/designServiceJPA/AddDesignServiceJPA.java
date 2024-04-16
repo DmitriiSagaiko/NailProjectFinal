@@ -26,7 +26,7 @@ public class AddDesignServiceJPA {
 
     public DesignResponseDTO addNailDesign(DesignRequestDTO requestDTO) {
 
-        Optional<Client> optionalClient = findClientByIdServiceJPA.findClientById(requestDTO.getClientId());
+        Optional<Client> optionalClient = findClientByIdServiceJPA.findOptionalClientById(requestDTO.getClientId());
 
         if(optionalClient.isEmpty()){
             throw new NotFoundException("Client with id " + requestDTO.getClientId() + " not found");
