@@ -1,12 +1,8 @@
 package org.nailproject.services.clientService;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.nailproject.dto.clients.ClientRequestForUpdateOrCreateDTO;
 import org.nailproject.entity.client.Client;
 import org.nailproject.repository.ClientRepositoryJPA;
@@ -19,7 +15,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class ClientService {
+class ClientServiceGoodTest {
 
     //We dont use @BeforeEach or @BeforeAll because
     //Mock is auto injected into service.
