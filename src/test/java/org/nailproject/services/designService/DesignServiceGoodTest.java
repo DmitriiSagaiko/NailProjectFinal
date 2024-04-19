@@ -17,7 +17,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-class DesignService {
+class DesignServiceGoodTest {
     @Mock
     NailDesignRepositoryJPA repository;
     @Mock
