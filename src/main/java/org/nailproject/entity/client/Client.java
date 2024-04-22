@@ -33,10 +33,16 @@ public class Client {
     @Email(message = "provide correct email for example user@domain.com")
     private String email;
 
+    @NotBlank(message = "password can not be blank")
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%&*_+]).{8,}$\n")
+    private String password;
+
     @Size(min = 9, max = 16, message = "phone number has to lie in range from 9 to 16 symbols  ")
     @NotNull(message = "phone can't be null")
     private String phoneNumber;
 
+
+    private Role role;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,4 +50,8 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<NailDesign> nailDesigns;
+
+    public String getAuthority() {
+        return "ROLE_" + getRole();
+    }
 }
