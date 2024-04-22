@@ -3,14 +3,18 @@ package org.nailproject.controllers;
 import exceptions.AlreadyExistException;
 import exceptions.NotFoundException;
 import jakarta.validation.ConstraintViolationException;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.security.InvalidParameterException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
+import java.util.Objects;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -58,4 +62,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlerMissingServletRequestParameterException(MissingServletRequestParameterException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<List<String>> handlerMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
+        return new ResponseEntity<>(exception.getAllErrors().stream().map(
+                DefaultMessageSourceResolvable::getDefaultMessage
+        ).toList(), HttpStatus.BAD_REQUEST);
+    }
+
 }

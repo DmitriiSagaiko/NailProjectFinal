@@ -2,7 +2,6 @@ package org.nailproject.services.clientServiceJPA;
 
 import exceptions.NotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.nailproject.dto.clients.ClientsResponseDTO;
 import org.nailproject.dto.clients.ConvertFromClientToResponseDTO;
 import org.nailproject.entity.client.Client;
 import org.nailproject.repository.ClientRepositoryJPA;
@@ -18,6 +17,11 @@ public class FindClientByIdServiceJPA {
 
 
     public Optional<Client> findOptionalClientById(Integer id) {
+
+        if(id == null || id <= 0) {
+            throw new IllegalArgumentException("id cannot be null or negative number");
+        }
+
         Optional<Client> optionalClient = clientRepositoryJPA.findById(id.toString());
         if (optionalClient.isEmpty()) {
             throw new NotFoundException("Client with id " + id + " not found");
