@@ -1,4 +1,4 @@
-package org.nailproject.services.controllers;
+package org.nailproject.services.controllers.client;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ClientControllerJPA.class)
-public class ClientControllerTest {
+public class ClientControllerGoodTest {
 
     @Autowired
     private MockMvc mockMvc;

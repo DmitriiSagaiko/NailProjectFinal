@@ -75,7 +75,7 @@ public class ClientControllerJPA {
                     schema = @Schema(implementation = ClientsResponseDTO.class))})
     @DeleteMapping("/{email}")
     @Transactional
-    public ResponseEntity<ClientsResponseDTO> deleteClient(@Valid @PathVariable String email) {
+    public ResponseEntity<ClientsResponseDTO> deleteClient(@PathVariable String email) {
         return new ResponseEntity<>(removeClientByEmailJPA.removeClientByEmail(email), HttpStatus.OK);
     }
 
